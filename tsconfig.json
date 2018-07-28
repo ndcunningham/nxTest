@@ -28,6 +28,9 @@
       ],
       "@sampleWorkspace/nico-core": [
         "libs/nico-core/src/index.ts"
+      ],
+      "@sampleWorkspace/material": [
+        "libs/material/src/index.ts"
       ]
     }
   },

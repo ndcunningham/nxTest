@@ -2,24 +2,20 @@ import { AuthPageActions, AuthPageLoginAction } from './auth-page.actions';
 import { createSelector } from '../../../../../../node_modules/@ngrx/store';
 import { AuthActions, AuthActionTypes } from './auth.actions';
 
-export interface AuthPageModel {
+export interface AuthPageState {
   pending: boolean;
   error: any | null;
 }
 
-export interface AuthPageState {
-  authPage: AuthPageModel | null;
-}
-
-export const initialState: AuthPageModel = {
+export const initialState: AuthPageState = {
   pending: false,
   error: null
 };
 
-export function authPageReducer(state = initialState, action: AuthPageActions | AuthActions) {
+export function authPageReducer(state = initialState, action: AuthPageActions | AuthActions): AuthPageState {
   switch (action.type) {
     case AuthPageLoginAction: {
-      return { ...state, pending: true };
+      return { ...state, pending: true, error: null };
     }
 
     case AuthActionTypes.LoginSuccess: {
@@ -34,7 +30,7 @@ export function authPageReducer(state = initialState, action: AuthPageActions | 
   }
 }
 
-export const selectAuthPage = (state: AuthPageState) => state.authPage;
+export const selectAuthPage = (state: AuthPageState) => state;
 export const selectPagePending = createSelector(selectAuthPage, page => page.pending);
 export const selectPageError = createSelector(selectAuthPage, page => page.error);
 export const selectPageHasError = createSelector(selectAuthPage, page => !!page.error);

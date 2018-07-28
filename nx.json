@@ -25,6 +25,9 @@
     },
     "nico-core": {
       "tags": []
+    },
+    "material": {
+      "tags": []
     }
   }
 }

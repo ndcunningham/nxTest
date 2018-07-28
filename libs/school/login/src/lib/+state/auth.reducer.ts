@@ -18,19 +18,16 @@ export interface AuthState {
   readonly user: UserModel | null;
 }
 
-export const initialState: UserModel = {};
+export const initialState: AuthState = { user: null };
 
-export function authReducer(state = initialState, action: AuthActions): UserModel {
+export function authReducer(state = initialState, action: AuthActions): AuthState {
   switch (action.type) {
-    case AuthActionTypes.AuthAction:
-      return state;
-
     case AuthActionTypes.LoginSuccess: {
-      return { ...state, ...action.payload };
+      return { ...state, user: action.payload };
     }
 
     case AuthActionTypes.LoginFailed: {
-      return { ...state, id: null };
+      return { ...state, user: { id: null } };
     }
 
     default:

@@ -1,33 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { AuthActionTypes, LoginUser, LoginSuccess } from './auth.actions';
+import { AuthActionTypes, LoginUser, LoginSuccess, LoginFailed } from './auth.actions';
+import { AuthPageLoginAction } from './auth-page.actions';
 import { AuthState } from './auth.reducer';
 import { DataPersistence } from '@nrwl/nx';
 import { AuthServiceModel } from '../../../../../nico-core/src';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthEffects {
-  @Effect() effect$ = this.actions$.ofType(AuthActionTypes.AuthAction);
+  // @Effect() effect$ = this.actions$.ofType(AuthActionTypes.AuthAction);
+
+  // @Effect()
+  // loadAuth$ = this.dataPersistence.fetch(AuthActionTypes.LoginUser, {
+  //   run: (action: LoginUser, state: AuthState) => {
+  //     return new LoginSuccess(state);
+  //   },
+
+  //   onError: (action: LoginUser, error) => {
+  //     console.error('Error', error);
+  //   }
+  // });
 
   @Effect()
-  loadAuth$ = this.dataPersistence.fetch(AuthActionTypes.LoginUser, {
-    run: (action: LoginUser, state: AuthState) => {
-      return new LoginSuccess(state);
-    },
-
-    onError: (action: LoginUser, error) => {
-      console.error('Error', error);
-    }
-  });
-
-  @Effect()
-  login$ = this.dataPersistence.pessimisticUpdate(AuthActionTypes.LoginUser, {
-    run: (a: LoginUser, state: AuthState) => {
-      return this.service.login(state, a.payload).map(u => new LoginSuccess(u));
+  login$ = this.dataPersistence.pessimisticUpdate(AuthPageLoginAction, {
+    run: (a: any, state: AuthState) => {
+      return this.service.login(state, a.payload).pipe(map(u => new LoginSuccess(u)));
     },
 
     onError: (a, e: any) => {
-      return null;
+      return new LoginFailed(e);
     }
   });
 

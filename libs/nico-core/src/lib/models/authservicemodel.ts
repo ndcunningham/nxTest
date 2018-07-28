@@ -10,10 +10,10 @@ export abstract class AuthServiceModel {
   /**
    * This function is used to log the user in
    */
-  abstract login<T>(...args): Observable<T>;
+  abstract login(...args): Observable<any>;
 
   /**
    * This function is used to log the user out
    */
-  abstract logout<T>(...args): Observable<T>;
+  abstract logout(...args): Observable<any>;
 }
