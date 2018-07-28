@@ -7,5 +7,24 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "school": {
+      "tags": []
+    },
+    "school-e2e": {
+      "tags": []
+    },
+    "ui-components": {
+      "tags": []
+    },
+    "buttons": {
+      "tags": []
+    },
+    "school-login": {
+      "tags": []
+    },
+    "nico-core": {
+      "tags": []
+    }
+  }
 }

@@ -8,7 +8,8 @@
     "experimentalDecorators": true,
     "target": "es5",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "node_modules"
     ],
     "lib": [
       "es2017",
@@ -16,6 +17,18 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@sampleWorkspace/buttons": [
+        "libs/buttons/src/index.ts"
+      ],
+      "@sampleWorkspace/ui-components": [
+        "libs/ui-components/src/index.ts"
+      ],
+      "@sampleWorkspace/school/login": [
+        "libs/school/login/src/index.ts"
+      ],
+      "@sampleWorkspace/nico-core": [
+        "libs/nico-core/src/index.ts"
+      ]
     }
   },
   "exclude": [
